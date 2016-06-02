@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openmrs.module</groupId>
     <artifactId>kapsowar</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>OpenHMIS Kapsowar Module</name>
     <description>Provides functionality only specific to the kapsowar hospital.</description>
