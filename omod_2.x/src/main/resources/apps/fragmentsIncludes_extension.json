@@ -1,0 +1,12 @@
+[
+	{
+		"id": "${project.parent.artifactId}.printDetailsLink",
+		"extensionPointId": "patientDashboard.overallActions",
+		"type": "link",
+		"label": "kapsowar.dashboard.print.patientDetails",
+		"url": "module/kapsowar/patientReport.page?personId={{patient.patientId}}&reportId=0",
+		"icon": "icon-print",
+		"order": 20,
+		"requiredPrivilege": "App: Print Patient Details"
+	}
+]
