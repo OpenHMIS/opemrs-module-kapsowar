@@ -1,0 +1,9 @@
+[
+	{
+		"id": "${project.parent.artifactId}",
+		"description": "Module to provide functionality specific to kapsowar hospital",
+		"order": 20,
+		"extensions": [
+		]
+	}
+]

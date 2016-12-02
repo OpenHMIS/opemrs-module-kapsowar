@@ -1,1 +1,1 @@
-# opemrs-module-kapsowar
+This repository contains Kapsowar specific functionality
