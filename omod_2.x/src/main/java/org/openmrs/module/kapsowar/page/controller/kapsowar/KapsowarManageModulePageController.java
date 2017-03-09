@@ -21,7 +21,6 @@ import java.util.List;
 public class KapsowarManageModulePageController {
 	/**
 	 * Process requests to show the home page
-	 *
 	 * @param model
 	 * @param appFrameworkService
 	 * @param request
@@ -31,7 +30,7 @@ public class KapsowarManageModulePageController {
 	public void get(PageModel model, PageRequest request, UiUtils ui) throws IOException {
 		AppFrameworkService appFrameworkService = Context.getService(AppFrameworkService.class);
 		List<Extension> extensions = appFrameworkService.getExtensionsForCurrentUser(
-				KapsowarConstants.MANAGE_MODULE_PAGE_EXTENSION_POINT_ID);
+		        KapsowarConstants.MANAGE_MODULE_PAGE_EXTENSION_POINT_ID);
 		model.addAttribute("extensions", extensions);
 	}
 }

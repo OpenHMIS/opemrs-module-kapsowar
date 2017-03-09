@@ -27,7 +27,7 @@ public class PrintPatientDetailsController extends ReportsControllerBase {
 			personId = Integer.parseInt(temp);
 		} else {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "The person id ('" + temp + "') must be "
-					+ "defined and be numeric.");
+			        + "defined and be numeric.");
 			return null;
 		}
 

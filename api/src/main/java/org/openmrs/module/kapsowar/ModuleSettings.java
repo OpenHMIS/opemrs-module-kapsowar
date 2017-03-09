@@ -12,8 +12,7 @@ public class ModuleSettings {
 	private static final String PRINT_PATIENT_DETAILS = "kapsowar.printPatientDetailsReport";
 	private static final String PATIENT_DETAILS_REPORT_ID_PROPERTY = "kapsowar.patientDetailsReportId";
 
-	protected ModuleSettings() {
-	}
+	protected ModuleSettings() {}
 
 	public static KapsowarSettings loadSettings() {
 		KapsowarSettings kapsowarSettings = new KapsowarSettings();
