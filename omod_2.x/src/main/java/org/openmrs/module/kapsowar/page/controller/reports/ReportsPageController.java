@@ -68,7 +68,7 @@ public class ReportsPageController {
 			} catch (NullPointerException e) {
 				LOG.error("The jasper report with ID '" + reportId + "' could not be found", e);
 				throw new ReportNotFoundException(
-				        "The report could not be found. Check configuration under Inventory Settings");
+						"The report could not be found. Check configuration under Inventory Settings");
 			}
 		}
 	}

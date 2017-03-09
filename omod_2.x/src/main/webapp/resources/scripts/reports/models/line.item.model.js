@@ -13,13 +13,13 @@
  *
  */
 
-(function() {
+(function () {
 	'use strict';
-
+	
 	var baseModel = angular.module('app.lineItemModel', []);
-
+	
 	function LineItemModel() {
-
+		
 		function LineItemModel(item, itemQuantity, itemPrice) {
 			this.item = item;
 			this.itemQuantity = itemQuantity;
@@ -29,69 +29,69 @@
 			this.prices = [];
 			this.invalidEntry = false;
 		}
-
+		
 		LineItemModel.prototype = {
-
-			getItem: function() {
+			
+			getItem: function () {
 				return this.item;
 			},
-
-			setItem: function(item) {
+			
+			setItem: function (item) {
 				this.item = item;
 			},
-
-			getItemQuantity: function() {
+			
+			getItemQuantity: function () {
 				return this.itemQuantity;
 			},
-
-			setItemQuantity: function(itemQuantity) {
+			
+			setItemQuantity: function (itemQuantity) {
 				this.itemQuantity = itemQuantity;
 			},
-
-			getItemPrice: function() {
+			
+			getItemPrice: function () {
 				return this.itemPrice;
 			},
-
-			setItemPrice: function(itemPrice) {
+			
+			setItemPrice: function (itemPrice) {
 				this.itemPrice = itemPrice;
 			},
-
-			setSelected: function(selected) {
+			
+			setSelected: function (selected) {
 				this.selected = selected;
 			},
-
-			isSelected: function() {
+			
+			isSelected: function () {
 				return this.selected;
 			},
-
-			getTotal: function() {
+			
+			getTotal: function () {
 				return this.total;
 			},
-
-			setTotal: function(total) {
+			
+			setTotal: function (total) {
 				this.total = total;
 			},
-
-			getPrices: function() {
+			
+			getPrices: function () {
 				return this.prices;
 			},
-
-			setPrices: function(prices) {
+			
+			setPrices: function (prices) {
 				this.prices = prices;
 			},
-
-			setInvalidEntry: function(invalidEntry) {
+			
+			setInvalidEntry: function (invalidEntry) {
 				this.invalidEntry = invalidEntry;
 			},
-
-			isInvalidEntry: function() {
+			
+			isInvalidEntry: function () {
 				return this.invalidEntry;
 			}
 		};
-
+		
 		return LineItemModel;
 	}
-
+	
 	baseModel.factory("LineItemModel", LineItemModel);
 	LineItemModel.$inject = [];
 })();

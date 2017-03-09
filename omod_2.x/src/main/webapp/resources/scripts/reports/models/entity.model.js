@@ -13,24 +13,24 @@
  *
  */
 
-(function() {
+(function () {
 	'use strict';
-
+	
 	var baseModel = angular.module('app.genericMetadataModel');
-
+	
 	/* Define model fields */
 	function CashierBillModel(GenericMetadataModel) {
-
+		
 		var extended = angular.extend(GenericMetadataModel, {});
-
+		
 		// @Override
-		extended.getModelFields = function() {
+		extended.getModelFields = function () {
 			return ["lineItems", "patient", "payments", "status", "cashPoint"];
 		};
-
+		
 		return extended;
 	}
-
+	
 	baseModel.factory("CashierBillModel", CashierBillModel);
 	CashierBillModel.$inject = ['GenericMetadataModel'];
 })();

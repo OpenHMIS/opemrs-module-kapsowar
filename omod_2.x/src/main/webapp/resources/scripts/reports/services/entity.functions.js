@@ -13,17 +13,17 @@
  *
  */
 
-(function() {
+(function () {
 	'use strict';
-
+	
 	var app = angular.module('app.cashierBillFunctionsFactory', []);
 	app.service('CashierBillFunctions', CashierBillFunctions);
-
+	
 	CashierBillFunctions.$inject = ['EntityFunctions', 'LineItemModel'];
-
+	
 	function CashierBillFunctions(EntityFunctions, LineItemModel) {
 		var service;
-
+		
 		service = {
 			addMessageLabels: addMessageLabels,
 			formatItemPrice: formatItemPrice,
@@ -39,9 +39,9 @@
 			updatePaymentTenderedAmount: updatePaymentTenderedAmount,
 			computeTotalPrice: computeTotalPrice,
 		};
-
+		
 		return service;
-
+		
 		/**
 		 * All message labels used in the UI are defined here
 		 * @returns {{}}
@@ -50,7 +50,7 @@
 			var messages = {};
 			return messages;
 		}
-
+		
 		function formatItemPrice(itemPrice) {
 			var price = itemPrice.price;
 			if (price !== undefined) {
@@ -58,19 +58,19 @@
 			} else {
 				price = '';
 			}
-
+			
 			if (itemPrice.name === undefined || itemPrice.name === '' || itemPrice.name === null) {
 				return price;
 			} else {
 				return price + ' (' + itemPrice.name + ')';
 			}
 		}
-
+		
 		function paymentWarningDialog($scope) {
 			var dialog = emr.setupConfirmationDialog({
 				selector: '#payment-warning-dialog',
 				actions: {
-					confirm: function() {
+					confirm: function () {
 						$scope.isProcessPayment = true;
 						$scope.$apply();
 						if ($scope.uuid !== undefined) {
@@ -80,38 +80,38 @@
 						}
 						dialog.close();
 					},
-					cancel: function() {
+					cancel: function () {
 						dialog.close();
 					}
 				}
 			});
-
+			
 			dialog.show();
-
+			
 			EntityFunctions.disableBackground();
 		}
-
+		
 		function adjustBillWarningDialog($scope) {
 			var dialog = emr.setupConfirmationDialog({
 				selector: '#adjust-bill-warning-dialog',
 				actions: {
-					confirm: function() {
+					confirm: function () {
 						$scope.isAdjustBill = true;
 						$scope.$apply();
 						$scope.saveOrUpdate();
 						dialog.close();
 					},
-					cancel: function() {
+					cancel: function () {
 						dialog.close();
 					}
 				}
 			});
-
+			
 			dialog.show();
-
+			
 			EntityFunctions.disableBackground();
 		}
-
+		
 		function validateLineItems(lineItems, validatedLineItems) {
 			// validate line items
 			var count = 0;
@@ -144,16 +144,16 @@
 					failed = true;
 				}
 			}
-
+			
 			if (validatedLineItems.length == 0 && !failed) {
 				emr.errorAlert("openhmis.cashier.bill.chooseItemErrorMessage");
 			} else if (validatedLineItems.length > 0 && !failed) {
 				return true;
 			}
-
+			
 			return false;
 		}
-
+		
 		function populateExistingLineItems(lineItems, populatedLineItems, $scope) {
 			for (var i = 0; i < lineItems.length; i++) {
 				var lineItem = lineItems[i];
@@ -166,16 +166,16 @@
 				lineItemModel.setSelected(true);
 				lineItemModel.setTotal(lineItem.price * lineItem.quantity);
 				populatedLineItems.push(lineItemModel);
-
+				
 				$scope.lineItem = lineItemModel;
-
+				
 				// load item details
 				$scope.loadItemDetails(lineItem.item.uuid, lineItemModel);
 			}
-
+			
 			$scope.computeTotalPrice();
 		}
-
+		
 		function populatePayments(payments, populatedPayments) {
 			if (payments !== undefined && payments.length > 0) {
 				for (var i = 0; i < payments.length; i++) {
@@ -197,7 +197,7 @@
 				}
 			}
 		}
-
+		
 		function createPayment(paymentModeAttributes, attributes,
 		                       amountTendered, amountDue, paymentModeUuid) {
 			var requestPaymentAttributeTypes = [];
@@ -208,7 +208,7 @@
 				if (requestPaymentAttributeTypes.length > 0) {
 					payment.attributes = requestPaymentAttributeTypes;
 				}
-
+				
 				amountTendered = parseFloat(amountTendered);
 				amountDue = parseFloat(amountDue);
 				if (amountDue - amountTendered < 0) {
@@ -222,16 +222,16 @@
 			}
 			return null;
 		}
-
+		
 		function updatePaymentTenderedAmount(payments) {
-			for (var i = 0; i < payments.length; i++){
+			for (var i = 0; i < payments.length; i++) {
 				var payment = payments[i];
 				payment.amountTendered = payment.amount;
 			}
-
+			
 			return payments;
 		}
-
+		
 		function reOrderItemPrices(lineItem, itemDetails) {
 			var defaultPrice = itemDetails.defaultPrice;
 			var index = -1;
@@ -241,13 +241,13 @@
 					index = lineItem.prices.indexOf(price);
 				}
 			}
-
+			
 			if (index !== -1) {
 				lineItem.prices.splice(index, 1);
 				lineItem.prices.unshift(defaultPrice);
 			}
 		}
-
+		
 		function calculateTotalPayableAmount(lineItems, roundingItem) {
 			var totalPayableAmount = 0;
 			for (var i = 0; i < lineItems.length; i++) {
@@ -256,19 +256,19 @@
 					totalPayableAmount += lineItem.getTotal();
 				}
 			}
-
+			
 			if (totalPayableAmount > 0 && roundingItem !== null && roundingItem !== undefined) {
 				totalPayableAmount = roundItemPrice(
 					totalPayableAmount, roundingItem.roundToNearest, roundingItem.roundingMode);
 			}
-
+			
 			return totalPayableAmount;
 		}
-
+		
 		function computeTotalPrice($scope) {
 			$scope.totalChangeDue = 0;
 			$scope.totalAmountDue = 0;
-
+			
 			// calculate amount for current items.
 			if ($scope.STATUS === 'PENDING') {
 				$scope.totalPayableAmount = calculateTotalPayableAmount(
@@ -280,10 +280,10 @@
 						$scope.totalPayableAmount, $scope.roundingItem.roundToNearest, $scope.roundingItem.roundingMode);
 				}
 			}
-
+			
 			// sum amount for previous line items.
 			$scope.totalPayableAmount += calculateTotalPayableAmount($scope.previousLineItems);
-
+			
 			// calculate tendered amount
 			$scope.totalAmountTendered = 0;
 			if ($scope.currentPayments !== null) {
@@ -291,21 +291,21 @@
 					$scope.totalAmountTendered += $scope.currentPayments[i].amountTendered;
 				}
 			}
-
+			
 			// sum previous payments.
 			if ($scope.previousPayments !== null) {
 				for (var i = 0; i < $scope.previousPayments.length; i++) {
 					$scope.totalAmountTendered += $scope.previousPayments[i].amountTendered;
 				}
 			}
-
+			
 			// calculate change due
 			if ($scope.totalPayableAmount > 0) {
 				$scope.totalChangeDue = $scope.totalAmountTendered - $scope.totalPayableAmount;
 			} else if ($scope.totalAmountTendered > 0) {
 				$scope.totalChangeDue = $scope.totalAmountTendered;
 			}
-
+			
 			// calculate amount due
 			if ($scope.totalChangeDue < 0) {
 				$scope.totalAmountDue = $scope.totalChangeDue * -1;
@@ -313,18 +313,18 @@
 			} else {
 				$scope.totalAmountDue = 0;
 			}
-
+			
 			// auto-fill payment amount.
 			if ($scope.checkAutofillPaymentAmount && $scope.totalAmountDue !== 0) {
 				$scope.amountTendered = $scope.totalAmountDue;
 			}
-
+			
 			$scope.totalChangeDue = $scope.totalChangeDue.toFixed(2);
 			$scope.totalAmountDue = $scope.totalAmountDue.toFixed(2);
 			$scope.totalAmountTendered = $scope.totalAmountTendered.toFixed(2);
 			$scope.totalPayableAmount = $scope.totalPayableAmount.toFixed(2);
 		}
-
+		
 		function roundItemPrice(val, nearest, mode) {
 			if (nearest === 0 || nearest === undefined || mode === undefined) {
 				return val;

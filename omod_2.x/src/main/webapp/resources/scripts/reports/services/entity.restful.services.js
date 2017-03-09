@@ -13,13 +13,13 @@
  *
  */
 
-(function() {
+(function () {
 	'use strict';
-
+	
 	angular.module('app.restfulServices').service('CashierBillRestfulService', CashierBillRestfulService);
-
+	
 	CashierBillRestfulService.$inject = ['EntityRestFactory', 'CashierBillFunctions'];
-
+	
 	function CashierBillRestfulService(EntityRestFactory, CashierBillFunctions) {
 		
 		var service;
@@ -42,9 +42,9 @@
 			checkAllowBillAdjustment: checkAllowBillAdjustment,
 			checkAutofillPaymentAmount: checkAutofillPaymentAmount,
 		};
-
+		
 		return service;
-
+		
 		/**
 		 * Retrieve payment modes
 		 * @param onLoadPaymentModesSuccessful
@@ -58,7 +58,7 @@
 				errorCallback
 			);
 		}
-
+		
 		function loadPaymentModeAttributes(module_name, uuid, onLoadPaymentModeAttributesSuccessful) {
 			setBaseUrl(module_name);
 			var requestParams = {};
@@ -68,20 +68,20 @@
 				errorCallback
 			);
 		}
-
+		
 		function loadItemDetails(uuid, lineItem) {
 			setBaseUrl('inventory');
 			var requestParams = {};
 			requestParams['rest_entity_name'] = 'item/' + uuid;
 			EntityRestFactory.loadEntities(requestParams,
-				function(data) {
+				function (data) {
 					lineItem.prices = data.prices;
 					CashierBillFunctions.reOrderItemPrices(lineItem, data)
 				},
 				errorCallback
 			);
 		}
-
+		
 		function searchPerson(q, type) {
 			var requestParams = [];
 			requestParams['q'] = q;
@@ -89,10 +89,10 @@
 				requestParams['v'] = "custom:(patientIdentifier:(uuid,identifier)," +
 					"person:(personName))";
 			}
-
+			
 			return EntityRestFactory.autocompleteSearch(requestParams, type, 'inventory', 'v1');
 		}
-
+		
 		function searchItems(q) {
 			setBaseUrl("inventory");
 			var requestParams = {};
@@ -101,7 +101,7 @@
 			requestParams['startIndex'] = 1;
 			return EntityRestFactory.autocompleteSearch(requestParams, 'item');
 		}
-
+		
 		function loadBill(module_name, uuid, onLoadBillSuccessful) {
 			setBaseUrl(module_name);
 			var requestParams = {};
@@ -111,7 +111,7 @@
 				errorCallback
 			);
 		}
-
+		
 		function processPayment(module_name, billUuid, payment, onProcessPaymentSuccessful) {
 			setBaseUrl(module_name);
 			EntityRestFactory.post('bill/' + billUuid + '/payment', '',
@@ -120,7 +120,7 @@
 				errorCallback
 			);
 		}
-
+		
 		function getRoundingItem(onLoadRoundingItemSuccessful) {
 			var requestParams = [];
 			requestParams['resource'] = 'options.json';
@@ -128,7 +128,7 @@
 			EntityRestFactory.loadResults(requestParams,
 				onLoadRoundingItemSuccessful, errorCallback);
 		}
-
+		
 		function getTimesheet(onLoadTimesheetSuccessful) {
 			var requestParams = [];
 			requestParams['resource'] = CASHIER_MODULE_SETTINGS_URL;
@@ -137,7 +137,7 @@
 			EntityRestFactory.loadResults(requestParams,
 				onLoadTimesheetSuccessful, errorCallback);
 		}
-
+		
 		function checkAdjustmentReasonRequired(onLoadAdjustmentReasonSuccessful) {
 			var requestParams = [];
 			requestParams['resource'] = CASHIER_MODULE_SETTINGS_URL;
@@ -146,7 +146,7 @@
 			EntityRestFactory.loadResults(requestParams,
 				onLoadAdjustmentReasonSuccessful, errorCallback);
 		}
-
+		
 		function checkAllowBillAdjustment(onLoadAllowBillAdjustmentSuccessful) {
 			var requestParams = [];
 			requestParams['resource'] = CASHIER_MODULE_SETTINGS_URL;
@@ -155,7 +155,7 @@
 			EntityRestFactory.loadResults(requestParams,
 				onLoadAllowBillAdjustmentSuccessful, errorCallback);
 		}
-
+		
 		function checkAutofillPaymentAmount(onLoadAutofillPaymentAmountSuccessful) {
 			var requestParams = [];
 			requestParams['resource'] = CASHIER_MODULE_SETTINGS_URL;
@@ -164,7 +164,7 @@
 			EntityRestFactory.loadResults(requestParams,
 				onLoadAutofillPaymentAmountSuccessful, errorCallback);
 		}
-
+		
 		function getCashier(url, cashierUuid, onLoadCashierSuccessful) {
 			url = url.split(cashierUuid).join("");
 			var requestParams = [];
@@ -173,7 +173,7 @@
 			EntityRestFactory.loadResults(requestParams,
 				onLoadCashierSuccessful, errorCallback);
 		}
-
+		
 		function getCashPoints(module_name, onLoadCashPointsSuccessful) {
 			setBaseUrl(module_name);
 			var requestParams = {};
@@ -183,12 +183,12 @@
 				errorCallback
 			);
 		}
-
+		
 		function setBaseUrl(module_name) {
 			EntityRestFactory.setBaseUrl(module_name);
 		}
 		
-		function errorCallback(error){
+		function errorCallback(error) {
 			emr.errorAlert(error);
 		}
 	}

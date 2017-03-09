@@ -14,7 +14,7 @@
  */
 
 /* initialize and bootstrap application */
-requirejs(['cashierBill/configs/entity.module'], function() {
+requirejs(['cashierBill/configs/entity.module'], function () {
 	angular.bootstrap(document, ['entitiesApp']);
 });
 
