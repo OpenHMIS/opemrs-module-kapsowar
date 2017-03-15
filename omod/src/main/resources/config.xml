@@ -26,7 +26,8 @@
 		<require_module version="2.11">org.openmrs.module.webservices.rest</require_module>
 		<require_module version="3.0">org.openmrs.module.openhmis.commons</require_module>
 		<require_module version="2.3">org.openmrs.module.openhmis.backboneforms</require_module>
-		<require_module version="1.5.6">org.openmrs.module.jasperreport</require_module>odule>
+		<require_module version="3.0">org.openmrs.module.openhmis.cashier</require_module>
+		<require_module version="1.5.7">org.openmrs.module.jasperreport</require_module>
 	</require_modules>
 
 	<activator>${project.parent.groupId}.${project.parent.artifactId}.ModuleActivator</activator>
@@ -59,6 +60,10 @@
 	<privilege>
 		<name>App: Edit Visit</name>
 		<description>Able to access old patient search page to edit visit</description>
+	</privilege>
+	<privilege>
+		<name>Task: View Kapsowar Reports</name>
+		<description>View kapsowar specific reports</description>
 	</privilege>
 
 	<!-- Required Global Properties

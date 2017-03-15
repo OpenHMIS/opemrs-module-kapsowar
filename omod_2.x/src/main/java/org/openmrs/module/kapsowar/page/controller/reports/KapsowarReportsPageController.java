@@ -31,12 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller for the cashier management landing page.
+ * Controller for the kapsowar reports page
  */
 @Controller
 @OpenmrsProfile(modules = { "uiframework:*.*" })
-public class ReportsPageController {
-	private static final Log LOG = LogFactory.getLog(ReportsPageController.class);
+public class KapsowarReportsPageController {
+	private static final Log LOG = LogFactory.getLog(KapsowarReportsPageController.class);
 
 	private JasperReportService reportService;
 	private List<JasperReport> reports;

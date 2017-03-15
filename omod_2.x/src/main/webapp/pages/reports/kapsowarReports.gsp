@@ -1,5 +1,5 @@
 <%
-	ui.decorateWith("appui", "standardEmrPage", [title: ui.message("openhmis.cashier.page.reports")])
+	ui.decorateWith("appui", "standardEmrPage", [title: ui.message("kapsowar.page.reports")])
 
 	ui.includeJavascript("uicommons", "angular.min.js")
 	ui.includeJavascript("uicommons", "angular-ui/angular-ui-router.min.js")
@@ -7,7 +7,7 @@
 
 	ui.includeCss("openhmis.commons", "bootstrap.css")
 	ui.includeCss("openhmis.commons", "entities2x.css")
-	ui.includeCss("openhmis.cashier", "entity.css")
+	ui.includeCss("kapsowar", "entity.css")
 
 	ui.includeJavascript("uicommons", "angular-ui/ui-bootstrap-tpls-0.11.2.min.js")
 	ui.includeJavascript("uicommons", "angular-common.js")
@@ -21,15 +21,15 @@
 	var breadcrumbs = [
 		{icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm'},
 		{
-			label: "${ ui.message("openhmis.cashier.page")}",
+			label: "${ ui.message("kapsowar.page")}",
 			link: '${ui.pageLink("openhmis.cashier", "cashierLanding")}'
 		},
 		{
-			label: "${ ui.message("openhmis.cashier.admin.task.dashboard")}",
+			label: "${ ui.message("kapsowar.admin.task.dashboard")}",
 			link: '/' + OPENMRS_CONTEXT_PATH + '/openhmis.cashier/cashier/cashierTasksDashboard.page'
 		},
 		{
-			label: "${ ui.message("openhmis.cashier.page.reports")}"
+			label: "${ ui.message("kapsowar.page.reports")}"
 		}
 	];
 
@@ -37,17 +37,17 @@
 </script>
 
 <div id="reportPage">
-	<h2>${ui.message("openhmis.cashier.page.reports")}</h2>
+	<h2>${ui.message("kapsowar.page.reports")}</h2>
 	<br/>
 
 	<div class="row">
 		<div class="col-xs-1">
-			<strong>${ui.message("openhmis.cashier.report.name")}:</strong>
+			<strong>${ui.message("kapsowar.report.name")}:</strong>
 		</div>
 
 		<div class="col-xs-4">
 			<select id="reportDropdown" class="form-control" onchange="selectReport()">
-				<option value="-1">${ui.message("openhmis.cashier.report.selectDefault")}</option>
+				<option value="-1">${ui.message("kapsowar.report.selectDefault")}</option>
 				<% reports.each { %>
 				<option value="${it.reportId}">${it.name}</option>
 				<% } %>
@@ -58,7 +58,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="parameterEntry noReportSelected">${ui.message("openhmis.cashier.report.noReportSelectedMessage")}</div>
+			<div class="parameterEntry noReportSelected">${ui.message("kapsowar.report.noReportSelectedMessage")}</div>
 
 			<div class="dateRange parameterEntry" style="display: none">
 				<ul class="table-layout">
@@ -95,23 +95,23 @@
 		<div class="right btn-group">
 			<button type="button" class="btn confirm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 			        aria-expanded="false">
-				${ui.message('openhmis.cashier.report.generate')} <span class="caret"></span>
+				${ui.message('kapsowar.report.generate')} <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a href="#" onclick="generateReport()">${ui.message('openhmis.cashier.report.generate.pdf')}</a></li>
-				<li><a href="#" onclick="generateReport(true)">${ui.message('openhmis.cashier.report.generate.excel')}</a>
+				<li><a href="#" onclick="generateReport()">${ui.message('kapsowar.report.generate.pdf')}</a></li>
+				<li><a href="#" onclick="generateReport(true)">${ui.message('kapsowar.report.generate.excel')}</a>
 				</li>
 			</ul>
 
 			<!--<a class="button" href="#" onClick="generateReport(true)">
-                ${ui.message('openhmis.cashier.report.generate.excel')}
+                ${ui.message('kapsowar.report.generate.excel')}
             </a>
             &nbsp;
-            <input type="button" class="confirm right" value="${ui.message('openhmis.cashier.report.generate')}"
+            <input type="button" class="confirm right" value="${ui.message('kapsowar.report.generate')}"
                    onClick="generateReport()" />
             <p style="text-align: center;">
                 <small>
-                    <a href="#" onClick="generateReport(true)">${ui.message('openhmis.cashier.report.generate.excel')}</a>
+                    <a href="#" onClick="generateReport(true)">${ui.message('kapsowar.report.generate.excel')}</a>
                 </small>
             </p>-->
 		</div>
@@ -139,7 +139,7 @@
 		var endDate = jQuery("#endDate-field").val();
 
 		if (!beginDate || !endDate) {
-			emr.errorAlert('${ ui.message('openhmis.cashier.report.error.beginAndEndDate')}');
+			emr.errorAlert('${ ui.message('kapsowar.report.error.beginAndEndDate')}');
 
 			return false;
 		}
@@ -150,7 +150,7 @@
 
 		var reportId = jQuery("#reportDropdown").val();
 		if (reportId < 0) {
-			emr.errorAlert('${ ui.message('openhmis.cashier.report.error.selectReport')}');
+			emr.errorAlert('${ ui.message('kapsowar.report.error.selectReport')}');
 
 			return false;
 		}
@@ -172,8 +172,8 @@
 
 	function formatDate(dateStr) {
 		var dt = new Date(dateStr);
-
-		return dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();
+		
+		return dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes();
 	}
 
 	function cancel() {
