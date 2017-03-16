@@ -1,5 +1,5 @@
 <%
-	ui.decorateWith("appui", "standardEmrPage", [title: ui.message("kapsowar.page.reports")])
+	ui.decorateWith("appui", "standardEmrPage", [title: ui.message("kapsowar.reports")])
 
 	ui.includeJavascript("uicommons", "angular.min.js")
 	ui.includeJavascript("uicommons", "angular-ui/angular-ui-router.min.js")
@@ -29,7 +29,7 @@
 			link: '/' + OPENMRS_CONTEXT_PATH + '/openhmis.cashier/cashier/cashierTasksDashboard.page'
 		},
 		{
-			label: "${ ui.message("kapsowar.page.reports")}"
+			label: "${ ui.message("kapsowar.reports")}"
 		}
 	];
 
@@ -37,7 +37,7 @@
 </script>
 
 <div id="reportPage">
-	<h2>${ui.message("kapsowar.page.reports")}</h2>
+	<h2>${ui.message("kapsowar.reports")}</h2>
 	<br/>
 
 	<div class="row">
@@ -144,7 +144,7 @@
 			return false;
 		}
 
-		// Get the dates into the expected format (dd-MM-yyyy)
+		// Get the dates into the expected format (dd-MM-yyyy HH:mm)
 		beginDate = formatDate(beginDate);
 		endDate = formatDate(endDate);
 

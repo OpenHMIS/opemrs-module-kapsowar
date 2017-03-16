@@ -3,16 +3,6 @@
 		"id": "${project.parent.artifactId}",
 		"description": "Module to provide functionality specific to kapsowar hospital",
 		"order": 22,
-		"extensions": [
-			{
-				"id": "${project.parent.groupId}.${project.parent.artifactId}.reportsLink",
-				"extensionPointId": "org.openmrs.module.openhmis.cashier.tasks.dashboard",
-				"type": "link",
-				"label": "Kapsowar Reports",
-				"url": "${project.parent.artifactId}/reports/kapsowarReports.page",
-				"icon": "icon-list-alt",
-				"requiredPrivilege": "Task: View Kapsowar Reports"
-			}
-		]
+		"extensions": []
 	}
 ]

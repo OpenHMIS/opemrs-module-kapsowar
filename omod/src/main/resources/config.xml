@@ -38,6 +38,20 @@
 		<description>ID of the report to be used to get the patient details</description>
 	</globalProperty>
 
+	<globalProperty>
+		<property>${project.parent.artifactId}.reports.cashierBillAdjustments</property>
+		<description>
+			Report showing adjusted bills along with the reason and changes to bill amount
+		</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>${project.parent.artifactId}.reports.cashierCollections</property>
+		<description>
+			Report breaking down bill payments according to payment modes
+		</description>
+	</globalProperty>
+
 	<!-- Extensions -->
 	<!-- AOP
 	<advice>

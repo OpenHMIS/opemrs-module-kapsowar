@@ -5,9 +5,11 @@ package org.openmrs.module.kapsowar.api.util;
  */
 public class KapsowarConstants {
 	public static final String MODULE_ID = "kapsowar";
-	protected static final String MODULE_BASE = "/module/";
+	public static final String MODULE_BASE = "/module/";
 	public static final String MODULE_ROOT = MODULE_BASE + MODULE_ID + "/";
 	public static final String JASPER_REPORT_PATIENT = MODULE_ROOT + "patientReport";
 	public static final String MANAGE_MODULE_PAGE_EXTENSION_POINT_ID = "org.openmrs.module.kapsowar.manage.module";
 	public static final String LANDING_PAGE_EXTENSION_POINT_ID = "org.openmrs.module.kapsowar.landing";
+
+	public static final String JASPER_REPORT_PAGE = MODULE_ROOT + "jasperReport";
 }

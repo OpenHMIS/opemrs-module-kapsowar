@@ -19,9 +19,9 @@ import org.openmrs.annotation.OpenmrsProfile;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.jasperreport.JasperReport;
 import org.openmrs.module.jasperreport.JasperReportService;
-import org.openmrs.module.openhmis.cashier.ModuleSettings;
-import org.openmrs.module.openhmis.cashier.api.model.CashierSettings;
-import org.openmrs.module.openhmis.cashier.web.CashierWebConstants;
+import org.openmrs.module.kapsowar.ModuleSettings;
+import org.openmrs.module.kapsowar.api.model.KapsowarSettings;
+import org.openmrs.module.kapsowar.api.util.KapsowarConstants;
 import org.openmrs.module.openhmis.commons.api.exception.ReportNotFoundException;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.stereotype.Controller;
@@ -45,17 +45,19 @@ public class KapsowarReportsPageController {
 		reportService = Context.getService(JasperReportService.class);
 		reports = new ArrayList<JasperReport>();
 
-		CashierSettings settings = ModuleSettings.loadSettings();
+		KapsowarSettings kapsowarSettings = ModuleSettings.loadSettings();
 
 		// Add reports to page model
-		addReportAttribute(model, settings.getDepartmentCollectionsReportId(), "departmentCollectionsReport");
-		addReportAttribute(model, settings.getDepartmentRevenueReportId(), "departmentRevenueReport");
-		addReportAttribute(model, settings.getShiftSummaryReportId(), "shiftSummaryReport");
-		addReportAttribute(model, settings.getDailyShiftSummaryReportId(), "dailyShiftSummaryReport");
-		addReportAttribute(model, settings.getPaymentsByPaymentModeReportId(), "paymentsByPaymentModeReport");
+		addReportAttribute(model, kapsowarSettings.getDepartmentCollectionsReportId(), "departmentCollectionsReport");
+		addReportAttribute(model, kapsowarSettings.getDepartmentRevenueReportId(), "departmentRevenueReport");
+		addReportAttribute(model, kapsowarSettings.getShiftSummaryReportId(), "shiftSummaryReport");
+		addReportAttribute(model, kapsowarSettings.getDailyShiftSummaryReportId(), "dailyShiftSummaryReport");
+		addReportAttribute(model, kapsowarSettings.getPaymentsByPaymentModeReportId(), "paymentsByPaymentModeReport");
+		addReportAttribute(model, kapsowarSettings.getCashierBillAdjustmentsId(), "cashierBillAdjustmentsReport");
+		addReportAttribute(model, kapsowarSettings.getCashierCollectionsId(), "cashierCollectionsReport");
 
 		model.addAttribute("reports", reports);
-		model.addAttribute("reportUrl", CashierWebConstants.JASPER_REPORT_PAGE);
+		model.addAttribute("reportUrl", KapsowarConstants.JASPER_REPORT_PAGE);
 	}
 
 	private void addReportAttribute(PageModel model, Integer reportId, String reportName) {
@@ -68,7 +70,7 @@ public class KapsowarReportsPageController {
 			} catch (NullPointerException e) {
 				LOG.error("The jasper report with ID '" + reportId + "' could not be found", e);
 				throw new ReportNotFoundException(
-				        "The report could not be found. Check configuration under Inventory Settings");
+				        "The report could not be found. Check configuration under Inventory kapsowarSettings");
 			}
 		}
 	}
