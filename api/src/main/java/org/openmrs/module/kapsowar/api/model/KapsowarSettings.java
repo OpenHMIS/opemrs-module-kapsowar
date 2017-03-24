@@ -17,6 +17,7 @@ public class KapsowarSettings {
 	private Integer defaultShiftReportId;
 	private Integer cashierCollectionsId;
 	private Integer cashierBillAdjustmentsId;
+	private Integer patientDebtsId;
 
 	public Integer getCashierCollectionsId() {
 		return cashierCollectionsId;
@@ -96,5 +97,13 @@ public class KapsowarSettings {
 
 	public void setPrintPatientsDetails(Boolean printPatientsDetails) {
 		this.printPatientsDetails = printPatientsDetails;
+	}
+
+	public Integer getPatientDebtsId() {
+		return patientDebtsId;
+	}
+
+	public void setPatientDebtsId(Integer patientDebtsId) {
+		this.patientDebtsId = patientDebtsId;
 	}
 }

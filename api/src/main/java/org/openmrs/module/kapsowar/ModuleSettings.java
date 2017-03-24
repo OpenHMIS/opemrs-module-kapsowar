@@ -23,6 +23,7 @@ public class ModuleSettings {
 	public static final String KAPSOWAR_CASHIER_BILL_ADJUSTEMENT_REPORT_ID_PROPERTY =
 	        "kapsowar.reports.cashierBillAdjustments";
 	public static final String KAPSOWAR_CASHIER_COLLECTIONS_REPORT_ID_PROPERTY = "kapsowar.reports.cashierCollections";
+	public static final String KAPSOWAR_PATIENT_DEBTS_REPORT_ID_PROPERTY = "kapsowar.reports.patientDebts";
 	private static AdministrationService administrationService;
 
 	static {
@@ -97,6 +98,13 @@ public class ModuleSettings {
 			}
 		});
 
+		getIntProperty(KAPSOWAR_PATIENT_DEBTS_REPORT_ID_PROPERTY, new Action1<Integer>() {
+			@Override
+			public void apply(Integer parameter) {
+				kapsowarSettings.setPatientDebtsId(parameter);
+			}
+		});
+
 		return kapsowarSettings;
 	}
 
@@ -112,6 +120,7 @@ public class ModuleSettings {
 		setIntProperty(PAYMENTS_BY_PAYMENT_MODE_REPORT_ID_PROPERTY, kapsowarSettings.getPaymentsByPaymentModeReportId());
 		setIntProperty(KAPSOWAR_CASHIER_BILL_ADJUSTEMENT_REPORT_ID_PROPERTY, kapsowarSettings.getCashierBillAdjustmentsId());
 		setIntProperty(KAPSOWAR_CASHIER_COLLECTIONS_REPORT_ID_PROPERTY, kapsowarSettings.getCashierCollectionsId());
+		setIntProperty(KAPSOWAR_PATIENT_DEBTS_REPORT_ID_PROPERTY, kapsowarSettings.getPatientDebtsId());
 	}
 
 	private static Boolean getBoolProperty(String propertyName) {

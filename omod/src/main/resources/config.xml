@@ -52,6 +52,13 @@
 		</description>
 	</globalProperty>
 
+	<globalProperty>
+		<property>${project.parent.artifactId}.reports.patientDebts</property>
+		<description>
+			Report to show which patient have debts in the hospital
+		</description>
+	</globalProperty>
+
 	<!-- Extensions -->
 	<!-- AOP
 	<advice>

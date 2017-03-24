@@ -62,6 +62,8 @@ public class JasperReportController extends ReportsControllerBase {
 		} else if (kapsowarSettings.getCashierCollectionsId() != null && reportId == kapsowarSettings
 		        .getCashierCollectionsId()) {
 			return renderDateRangeReport(reportId, "Cashier Collections", request, response);
+		} else if (kapsowarSettings.getPatientDebtsId() != null && reportId == kapsowarSettings.getPatientDebtsId()) {
+			return renderDateRangeReport(reportId, "Patient Debts", request, response);
 		}
 
 		return null;

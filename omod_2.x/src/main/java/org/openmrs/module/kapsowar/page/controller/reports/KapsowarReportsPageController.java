@@ -55,6 +55,7 @@ public class KapsowarReportsPageController {
 		addReportAttribute(model, kapsowarSettings.getPaymentsByPaymentModeReportId(), "paymentsByPaymentModeReport");
 		addReportAttribute(model, kapsowarSettings.getCashierBillAdjustmentsId(), "cashierBillAdjustmentsReport");
 		addReportAttribute(model, kapsowarSettings.getCashierCollectionsId(), "cashierCollectionsReport");
+		addReportAttribute(model, kapsowarSettings.getPatientDebtsId(), "patientDebts");
 
 		model.addAttribute("reports", reports);
 		model.addAttribute("reportUrl", KapsowarConstants.JASPER_REPORT_PAGE);
